@@ -1,7 +1,10 @@
-function statusHandler(req, res) {
+import database from "../../../../infra/database.js";
+
+async function status(req, res) {
+  const result = await database.query("SELECT 1 + 1 as sum");
+  console.log(result.rows);
   res.status(200).json({ status: "ok" });
   console.log(JSON.stringify(req.body, null, 2));
-  console.log(JSON.stringify(req.header, null, 2));
 }
 
-export default statusHandler;
+export default status;
